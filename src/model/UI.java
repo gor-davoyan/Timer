@@ -6,6 +6,7 @@ import java.awt.*;
 public class UI extends JFrame {
     static JLabel timeLabel;
     static JLabel finishLabel;
+    static JButton startButton;
 
     public UI() {
         super("Timer");
@@ -34,9 +35,10 @@ public class UI extends JFrame {
         greenPanel.setBackground(Color.GREEN);
         add(greenPanel);
 
-        JButton startButton = new JButton("Start");
+        startButton = new JButton("Start");
         startButton.setBounds(194, 230, 100, 30);
         add(startButton);
+
 
         timeLabel = new JLabel("00:00");
         timeLabel.setBounds(195, 310, 100, 30);
@@ -60,8 +62,7 @@ public class UI extends JFrame {
         add(finishLabel);
 
         startButton.addActionListener(e -> {
-            String[] split = timeTextField.getText().split(",");
-            Thread t = new Thread(new Timer(Integer.parseInt(split[0]), Integer.parseInt(split[1])));
+            Thread t = new Thread(new Timer(timeTextField.getText()));
             t.start();
         });
     }
